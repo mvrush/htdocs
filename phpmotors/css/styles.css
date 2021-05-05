@@ -1,0 +1,309 @@
+/* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
+html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+
+/*----------- apply a natural box layout model to all elements --------------*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*-----------------BODY----------------*/
+body {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Zen Dots', cursive;
+    font-size: 1rem;
+}
+
+/*-----------------MAIN----------------*/
+main {
+    border: none;
+    background-color: white;
+    max-width: 100%;
+    margin: 1rem auto;
+}
+
+main hr {
+    border: 2px solid #3a3a3a;
+}
+
+/*-----------------HEADER----------------*/
+header p{
+    float: right;
+    margin: 2rem 2rem;
+}
+
+header img {
+    width: 160px;
+    margin: 0 .3rem;
+}
+
+/*-----------------NAVIGATION----------------*/
+nav {
+    font-family: 'Zen Dots', cursive;
+    font-size: .65rem;
+    color: white;
+    background-color: #3a3a3a;
+    padding: 0 2%;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    padding: .8rem .2rem;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+}
+
+nav ul li a:hover {
+    background-color: #4C96D7;
+    color: #333;
+}
+nav ul li.active a {
+    background-color: #79aad4;
+    color: #333;
+}
+
+nav ul li.active a:hover {
+    background-color: #4C96D7;
+    color: #333;
+}
+
+/*-----------------PAGE CONTENT----------------*/
+.imageandcall {
+    position: relative; /*set to relative. HTML is in the flow of the page. */
+}
+
+.calltoaction {
+    position: absolute; /*set to absolute which will make it relative to the upper left edge of the container div. Absolute value removes elements from the document flow, and elements are positioned relative to its positioned ancestor element. */
+    top: 0;
+    left: 0;
+    float: left;
+    color: #386f9e;
+    text-align: center;
+    font-size: .8rem;
+}
+
+.calltoaction h2 {
+    margin: 0;
+    font-size: .8rem;
+}
+
+.calltoaction ul{
+    list-style-type: none;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+.imageandcall button {
+    margin:1rem auto;
+    display:block;
+    color: #272727;
+    font-size: 1.1rem;
+    background-color: #4c96d7;
+    border:1px solid #3a3a3a;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 5px 0px #bababa;
+}
+
+.imageandcall button:active {
+    box-shadow: 0 3px 0 #bababa;
+    transform: translateY(2px);
+}
+
+.contentdiv {
+    margin: 0 2%;
+}
+
+.imageandcall img {
+    width: 100%;
+    margin-top: 1.5rem;  
+}
+
+article li {
+    margin: .5rem 0;
+}
+
+.upgrades {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .5fr 1fr .5fr 1fr .5fr;
+    text-align: center;
+    column-gap: .5rem;
+}
+
+.upgrades p {
+    margin-top: 0;
+}
+
+.upgrades h2 {
+    grid-column: 1 / 3;
+    text-align: left;
+}
+
+.upgrades div:nth-of-type(1) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.upgrades div:nth-of-type(2) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.upgrades div:nth-of-type(3) {
+    grid-column: 1;
+}
+
+.upgrades div:nth-of-type(4) {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.upgrades p:nth-last-of-type(odd) {
+    grid-column: 2;
+}
+
+.upgrades p:nth-last-of-type(even) {
+    grid-column: 1;
+}
+
+.upgrades div {
+    background-color: #4c96d7;
+    border: 1px solid #3a3a3a;
+}
+
+.upgrades img {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+}
+
+
+/*-----------------FOOTER----------------*/
+footer {
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/*----- Clearfix: Force an Element not to collapse -----*/
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /*---------------------CSS FOR LARGE SCREENS------------------------*/
+
+  /* 48em is also 768px for laptop screens a larger. (if basefont is 16px. To calculate, divide screen size by 16 to set em size) */
+@media only screen and (min-width: 48rem) {
+    /*-----------------BODY----------------*/
+        body {
+            background: url('/phpmotors/images/site/small_check.jpg');
+        }
+    
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Zen Dots', cursive;
+            font-size: 1.2rem;
+        }
+    
+        /*-----------------MAIN----------------*/
+    main {
+        border: 4px solid #3c96d7;
+        border-radius: 10px;
+        max-width: 90%;
+        margin: 1rem auto;
+    }
+    
+    main hr {
+        border: 2px solid #3a3a3a;
+    }
+    
+    /*-----------------HEADER----------------*/
+    
+    header img {
+        width: 200px;
+    }
+    
+    /*-----------------NAVIGATION----------------*/
+    nav {
+        font-size: 1.2rem;
+    }
+    
+    /*-----------------PAGE CONTENT----------------*/
+    .calltoaction {
+        top: .5rem;
+        left: 2rem;
+        font-size: .9rem;
+    }
+    
+    .calltoaction h2 {
+        font-size: 1rem;
+    }
+    
+    .imageandcall img {
+        margin-top: 0;
+    }
+    
+    .imageandcall button {
+        position: absolute; /*set to absolute which will make it relative to the upper left edge of the container div. Absolute value removes elements from the document flow, and elements are positioned relative to its positioned ancestor element. */
+        top: 4.2rem;
+        left: 2rem;
+        float: left;
+    }
+    
+    .reviewupgradediv {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+    
+    .reviewupgradediv section {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .reviewupgradediv article {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    } /* END of MEDIA QUERY */
