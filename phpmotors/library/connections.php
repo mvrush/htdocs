@@ -20,3 +20,4 @@ catch(PDOException $e) {
  exit;
 }
 }
+phpmotorsConnect();
