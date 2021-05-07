@@ -1,6 +1,6 @@
 <?php
 /*
-*Proxy connection to the phpmotors database
+*Proxy connection to the phpmotors database. This is a PDO connection object.
 */
 function phpmotorsConnect(){
 $server = 'localhost';
@@ -20,4 +20,3 @@ catch(PDOException $e) {
  exit;
 }
 }
-phpmotorsConnect();
