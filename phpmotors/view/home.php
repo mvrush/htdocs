@@ -8,16 +8,22 @@
         <title>Home | PHP Motors</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Roboto:wght@300;400;500;700;900&family=Zen+Dots&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/normalize.css"> 
-        <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/phpmotors/css/normalize.css"> 
+        <link rel="stylesheet" type="text/css" href="/phpmotors/css/styles.css" media="screen">
     </head>
     <body>
         <main>
         <!-- HEADER HERE -->
+        <header class="clearfix">
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
+        </header>
 
         <!-- NAVIGATION HERE -->
-        <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/nav.php'; ?>
+        <nav class="clearfix">
+        <!-- <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/nav.php'; ?> -->
+        <?php echo $navList; ?>
+        </nav>
+
 
         <!-- CONTENT HERE -->
     <div class="contentdiv">
@@ -31,7 +37,7 @@
                     <li>Fuzzy dice!</li>
                 </ul>
             </aside>
-                <img src="images/delorean.jpg" alt="DeLorean automobile">
+                <img src="/phpmotors/images/delorean.jpg" alt="DeLorean automobile">
                 <button id="actionButton" class="myButton">Own Today</button>
         </div>
         <div class="reviewupgradediv">
@@ -48,19 +54,19 @@
         <section class="upgrades">
             <h2>Delorean Upgrades</h2>          
             <div>
-               <img src="images/upgrades/flux-cap.png" alt="flux capacitor">
+               <img src="/phpmotors/images/upgrades/flux-cap.png" alt="flux capacitor">
             </div>
                 <p><a href="#">Flux Capacitor</a></p>
             <div>
-                <img src="images/upgrades/flame.jpg" alt="flame decals">
+                <img src="/phpmotors/images/upgrades/flame.jpg" alt="flame decals">
             </div>
                 <p><a href="#">Flame Decals</a></p>
              <div>
-                <img src="images/upgrades/bumper_sticker.jpg" alt="bumper sticker">
+                <img src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="bumper sticker">
             </div>
                 <p><a href="#">Bumper Stickers</a></p>
              <div>
-                <img src="images/upgrades/hub-cap.jpg" alt="hub cap">
+                <img src="/phpmotors/images/upgrades/hub-cap.jpg" alt="hub cap">
             </div>
                 <p><a href="#">Hub Caps</a></p>         
         </section>
@@ -70,8 +76,9 @@
     </div>
 
         <!-- FOOTER HERE -->
+        <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
-
+        </footer>
     </main>
     </body>
 

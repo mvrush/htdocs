@@ -1,4 +1,3 @@
-<nav class="clearfix">
         <div class="mainnavigation">
             <ul>
             <li><a href="#">Home</a></li>
@@ -9,4 +8,3 @@
             <li><a href="#">Used</a></li>
             </ul>
         </div>
-        </nav>

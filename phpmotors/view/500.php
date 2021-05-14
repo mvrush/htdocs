@@ -14,9 +14,15 @@
     <body>
     <main>
         <!-- HEADER HERE -->
+        <header class="clearfix">
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/header.php'; ?>
+        </header>
+
         <!-- NAVIGATION HERE -->
+        <nav class="clearfix">
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/nav.php'; ?>
+        </nav>
+        
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1>Server Error</h1>
