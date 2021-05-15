@@ -61,7 +61,7 @@ nav ul li {
 nav ul li a {
     display: block;
     color: white;
-    padding: .8rem .2rem;
+    padding: .8rem .4rem;
     text-decoration: none;
     text-align: center;
     border: none;
@@ -194,6 +194,53 @@ article li {
     height: 100%;
 }
 
+/*-----------------FORM----------------*/
+form label.top, form div {
+    display: block;
+    padding-bottom: .5rem;
+    font-family: 'Zen Dots', cursive;
+}
+
+form label.top input, form label.top select, form label.top textarea {
+    -webkit-appearance: none; /* overrides default styling on browsers and phones so our styling is correct */
+    display: block;
+    font-size: 1rem; /* this equals 16px which is the default font size for the browser */
+    border: solid 1px #999;
+    border-radius: 4px;
+    padding: .5rem; /* should be .75rem. Used to make the boxes 44px high for touch useability on phones and tablets */
+    color: #555; /* text color */
+    width: 100%; /* for small screens */
+    max-width: 20rem; /* limits width on large screens */
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* the next two blocks color the left edge of the required fields and cause them to turn green when the input is valid. */
+form label.top input:required {
+    border-left: red solid 6px;
+}
+
+form label.top input:required:valid {
+    border-left: green solid 6px;
+}
+
+.submitBtn {
+    
+    display:block;
+    color: #272727;
+    font-size: 1.1rem;
+    background-color: #4c96d7;
+    border:1px solid #3a3a3a;
+    padding: .5rem 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 5px 0px #bababa;
+}
+
+.submitBtn:active {
+    box-shadow: 0 3px 0 #bababa;
+    transform: translateY(2px);
+}
 
 /*-----------------FOOTER----------------*/
 footer {
