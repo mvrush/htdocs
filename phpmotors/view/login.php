@@ -27,7 +27,7 @@
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1>Sign in</h1>
-        <form method="post" action="">
+        <form method="post">
                 <label class="top">Email (required)<input type="email" name="clientEmail" id="clientEmail" required></label>
                 <label class="top">Password (required)<input type="password" id="clientPassword" name="clientPassword" required></label>
             <input type="submit" value="Sign-in" class="submitBtn">

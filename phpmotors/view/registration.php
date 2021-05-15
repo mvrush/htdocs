@@ -27,7 +27,7 @@
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1>Register</h1>
-        <form method="post" action="">
+        <form method="post">
                 <label class="top">First Name (required)<input type="text" name="clientFirstname" id="clientFirstname" required></label>
                 <label class="top">Last Name (required)<input type="text" name="clientLastname" id="clientLastname" required></label>
                 <p>Passwords must be at least 8 characters long and contain at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character
