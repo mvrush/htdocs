@@ -242,6 +242,21 @@ form label.top input:required:valid {
     transform: translateY(2px);
 }
 
+.alert {
+    color: red;
+    animation: blinker 1s linear infinite;
+    }
+      
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+
+.success {
+    color: green;
+}
+
 /*-----------------FOOTER----------------*/
 footer {
     text-align: center;

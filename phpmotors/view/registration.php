@@ -27,13 +27,22 @@
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1>Register</h1>
-        <form method="post">
+
+        <?php
+        if (isset($message)) {
+            echo $message;
+        }
+        ?>
+        <form action="/phpmotors/accounts/index.php" method="post">
                 <label class="top">First Name (required)<input type="text" name="clientFirstname" id="clientFirstname" required></label>
                 <label class="top">Last Name (required)<input type="text" name="clientLastname" id="clientLastname" required></label>
+                <label class="top">Email (required)<input type="email" name="clientEmail" id="clientEmail" required></label>
                 <p>Passwords must be at least 8 characters long and contain at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character
                 <label class="top">Password (required)<input type="password" id="clientPassword" name="clientPassword" pattern="(?=.*\d)(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></label>
             <input type="button" onclick="showPass()" value="Show Password" class="submitBtn">
             <input type="submit" value="Register" class="submitBtn">
+            <!-- Add the action name-value pair -->
+            <input type="hidden" name="action" value="register">
         </form>
     </div>
         <!-- FOOTER HERE -->
