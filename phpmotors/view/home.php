@@ -20,7 +20,7 @@
 
         <!-- NAVIGATION HERE -->
         <nav class="clearfix">
-        <!-- <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/nav.php'; ?> -->
+        <!-- (line is commented out and replaced with the php code below) <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/nav.php'; ?> -->
         <?php echo $navList; ?>
         </nav>
 

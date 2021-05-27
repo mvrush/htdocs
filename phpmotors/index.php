@@ -10,7 +10,7 @@ require_once 'model/main-model.php';
 $classifications = getClassifications();
 // The next two lines are used to test the above code and see if it returns the array. Uncomment to use them.
 //var_dump($classifications); //var_dump is a PHP function that displays info about a variable, array or object.
-//	exit; //the exit directive stops all further processing by PHP
+//exit; //the exit directive stops all further processing by PHP
 
 // Build a navigation bar using the $classifications array
 $navList = '<ul>';
@@ -38,6 +38,15 @@ switch ($action){
         break;
     case 'registration':
         include 'view/registration.php';
+        break;
+    case 'vehicle-man':
+        include 'view/vehicle-man.php';
+        break;
+    case 'add-classification':
+        include 'view/add-classification.php';
+        break;
+    case 'add-vehicle':
+        include 'view/add-vehicle.php';
         break;
 
     default:
