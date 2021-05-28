@@ -67,7 +67,9 @@
     $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
     $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
     // The next line may not be PARAM_INT because in the SQL database the data type is decimal(10,0). Also I wrote a price with a comma
-    // and it deleted everything after the comma
+    // and it deleted everything after the comma. I changed it to STR but it's still cutting off special characters.
+    // TO FIX: I had to change the PHP to PARAM-STR and then I had to go into the SQL database and 
+    // change the Data Type from "decimal(10,0)" to "varchar(50)" and it then accepts any value in string form. I changed it back for now.
     $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_INT);
     $stmt->bindValue(':invStock', $invStock, PDO::PARAM_INT);
     $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);

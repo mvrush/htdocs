@@ -49,12 +49,12 @@
         </datalist>
         <label class="top">Model<input type="text" name="invModel"></label>
         <label class="top">Description<textarea type="textarea" name="invDescription" cols="30" rows="5"></textarea></label>
-        <label class="top">Image Path<input type="text" name="invImage"></label>
-        <label class="top">Thumbnail Path<input type="text" name="invThumbnail"></label>
+        <label class="top">Image Path<input type="text" name="invImage" value="/images/no-image.png"></label>
+        <label class="top">Thumbnail Path<input type="text" name="invThumbnail" value="/images/no-image.png"></label>
         <label class="top">Price<input type="text" name="invPrice"></label>
         <label class="top"># In Stock<input type="text" name="invStock"></label>
         <label class="top">Color<input type="text" name="invColor"></label>
-        <input type="submit" value="addVehicle" class="submitBtn">
+        <input type="submit" value="Add Vehicle" class="submitBtn">
             <!-- Add the action name-value pair -->
             <input type="hidden" name="action" value="addVehicle">
         </form>
