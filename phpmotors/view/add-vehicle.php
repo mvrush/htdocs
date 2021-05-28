@@ -48,7 +48,7 @@
             <option value="Monster"></option>
         </datalist>
         <label class="top">Model<input type="text" name="invModel"></label>
-        <label class="top">Description<textarea type="textarea" name="invDescription" cols="30" rows="5"></textarea></label>
+        <label class="top">Description<textarea name="invDescription" cols="30" rows="5"></textarea></label>
         <label class="top">Image Path<input type="text" name="invImage" value="/images/no-image.png"></label>
         <label class="top">Thumbnail Path<input type="text" name="invThumbnail" value="/images/no-image.png"></label>
         <label class="top">Price<input type="text" name="invPrice"></label>
