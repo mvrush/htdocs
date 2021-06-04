@@ -214,14 +214,23 @@ form label.top input, form label.top select, form label.top textarea {
     background-color: rgba(0,0,0,0.1);
 }
 
-/* the next two blocks color the left edge of the required fields and cause them to turn green when the input is valid. */
-form label.top input:required {
+form span {
+    font-size: .8rem;
+}
+
+/* the next two blocks color the left edge of the required fields and cause them to turn green when the input is valid. Tweaked slightly from my normal form.
+* by adding :invalid to input:required and adding input:focus:invalid to the field. If those cause CSS errors, remove them.
+* Also textarea:required:invalid, textarea:focus:invalid and textarea:required:valid were all added so the textarea box
+* would also show the red and green border when invalid and valid. If you get CSS errors, remove them.
+ */
+form label.top textarea:required:invalid, textarea:focus:invalid, input:required:invalid, input:focus:invalid, select:required:invalid {
     border-left: red solid 6px;
 }
 
-form label.top input:required:valid {
+form label.top textarea:required:valid, input:required:valid, select:required:valid {
     border-left: green solid 6px;
 }
+
 
 .submitBtn {
     

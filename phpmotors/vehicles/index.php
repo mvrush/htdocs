@@ -33,7 +33,7 @@ $classificationid = getClassid();
 //exit; //the exit directive stops all further processing by PHP
 
 // Build dropdown menu using the $classificationid array
-$classList = '<select name="classificationId">';
+$classList = '<select name="classificationId" required>';
 $classList .= "<option value='default' disabled selected>Choose Car Classification &#9662;</option>";
 foreach ($classificationid as $class) {
 $classList .= "<option value='$class[classificationId]'>$class[classificationName]</option>";
@@ -53,7 +53,9 @@ if ($action == NULL) {
 switch ($action) {
     case 'classification':
         // Filter and store the data
-        $classificationName = filter_input(INPUT_POST, 'classificationName');
+        // FILTER_SANITIZE_STRING removes any html elements and leaves only text.
+        // The trim() function removes any white space before or after the value.
+        $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));
         // Check for missing data. The || means "or" so if any of the variables are empty the "if" becomes true.
         if (empty($classificationName)) {
             $message = '<p class="alert">Please provide information for all empty form fields.</p>';
@@ -83,14 +85,14 @@ switch ($action) {
     case 'addVehicle':
         // Filter and store the data
         $classificationId = filter_input(INPUT_POST, 'classificationId');
-        $invMake = filter_input(INPUT_POST, 'invMake');
-        $invModel = filter_input(INPUT_POST, 'invModel');
-        $invDescription = filter_input(INPUT_POST, 'invDescription');
-        $invImage = filter_input(INPUT_POST, 'invImage');
-        $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
-        $invPrice = filter_input(INPUT_POST, 'invPrice');
-        $invStock = filter_input(INPUT_POST, 'invStock');
-        $invColor = filter_input(INPUT_POST, 'invColor');
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING));
+        $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING));
+        $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING));
 
         // Check for missing data. The || means "or" so if any of the variables are empty the "if" becomes true.
         if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor)) {

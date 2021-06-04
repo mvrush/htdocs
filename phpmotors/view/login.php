@@ -34,9 +34,11 @@
         }
         ?>
         <form action="/phpmotors/accounts/index.php" method="post">
-                <label class="top">Email (required)<input type="email" name="clientEmail" id="clientEmail" required></label>
-                <label class="top">Password (required)<input type="password" id="clientPassword" name="clientPassword" required></label>
+                <label class="top">Email (required)<input type="email" name="clientEmail" id="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> required></label>
+                <label class="top">Password (required)<input type="password" id="clientPassword" name="clientPassword" pattern="(?=.*\d)(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></label>
             <input type="submit" value="Sign-in" class="submitBtn">
+        <!-- Add the action name-value pair. Remeber, the word 'Login' is different from 'login'. The word 'login' is being used to call the View. -->
+        <input type="hidden" name="action" value="Login">
         </form>
         <a href="/phpmotors/accounts/index.php?action=registration">Not a member yet? SIGN UP</a>
 

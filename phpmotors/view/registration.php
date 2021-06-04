@@ -34,10 +34,10 @@
         }
         ?>
         <form action="/phpmotors/accounts/index.php" method="post">
-                <label class="top">First Name (required)<input type="text" name="clientFirstname" id="clientFirstname" required></label>
-                <label class="top">Last Name (required)<input type="text" name="clientLastname" id="clientLastname" required></label>
-                <label class="top">Email (required)<input type="email" name="clientEmail" id="clientEmail" required></label>
-                <p>Passwords must be at least 8 characters long and contain at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character
+                <label class="top">First Name (required)<input type="text" name="clientFirstname" id="clientFirstname" <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";} ?> required></label>
+                <label class="top">Last Name (required)<input type="text" name="clientLastname" id="clientLastname" <?php if(isset($clientLastname)){echo "value='$clientLastname'";} ?> required></label>
+                <label class="top">Email (required)<input type="email" name="clientEmail" id="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> required></label>
+                <span>Passwords must be at least 8 characters long and contain at least 1 number, 1 capital letter, 1 lowercase letter and 1 special character</span>
                 <label class="top">Password (required)<input type="password" id="clientPassword" name="clientPassword" pattern="(?=.*\d)(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></label>
             <input type="button" onclick="showPass()" value="Show Password" class="submitBtn">
             <input type="submit" value="Register" class="submitBtn">

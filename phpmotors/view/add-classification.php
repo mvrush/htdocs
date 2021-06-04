@@ -33,7 +33,7 @@
         }
         ?>
         <form action="/phpmotors/vehicles/index.php" method="post">
-        <label class="top">Classification Name<input type="text" name="classificationName" id="classificationName"></label>
+        <label class="top">Classification Name<input type="text" name="classificationName" id="classificationName" <?php if(isset($classificationName)){echo "value='$classificationName'";} ?> required></label>
         <input type="submit" value="Add Classification" class="submitBtn">
             <!-- Add the action name-value pair -->
             <input type="hidden" name="action" value="classification">

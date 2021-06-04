@@ -7,6 +7,8 @@ require_once '../library/connections.php';
 require_once '../model/main-model.php';
 // Get the accounts model
 require_once '../model/accounts-model.php';
+// Get the functions library found in the 'library' folder
+require_once '../library/functions.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -33,21 +35,28 @@ $action = filter_input(INPUT_POST, 'action');
 
 switch ($action){
     case 'register':
-        // Filter and store the data
-        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-        $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-        $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-        $clientPassword = filter_input(INPUT_POST, 'clientPassword');
+        // Filter and store the data.
+        // FILTER_SANITIZE_STRING removes any html elements and leaves only text.
+        // The trim() function removes any white space before or after the value.
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING));
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+        $clientEmail = checkEmail($clientEmail);
+        $checkPassword = checkPassword($clientPassword);
 
         // Check for missing data. The || means "or" so if any of the variables are empty the "if" becomes true.
-        if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){
+        if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
         $message = '<p class="alert">Please provide information for all empty form fields.</p>';
         include '../view/registration.php';
         exit; 
         }
 
-        // Send the data to the model if no errors exist
-        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
+        // Hash the checked password
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+
+        // After hashing the password, send the data to the model if no errors exist
+        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
 
         // Check and report the result
         if($regOutcome === 1){
@@ -62,6 +71,26 @@ switch ($action){
         }
         break;
 
+        case 'Login':
+        // Filter and store the data.
+        // FILTER_SANITIZE_STRING removes any html elements and leaves only text.
+        // The trim() function removes any white space before or after the value.
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+        $clientEmail = checkEmail($clientEmail);
+        $checkPassword = checkPassword($clientPassword);
+
+        // Check for missing data. The || means "or" so if any of the variables are empty the "if" becomes true.
+        if(empty($clientEmail) || empty($checkPassword)){
+        $message = '<p class="alert">Please provide information for all empty form fields.</p>';
+        // The following 'include' line will load the login view again on failure and have correct fields filled in
+        // because of the Sticky function of the PHP on the login view input fields.
+        include '../view/login.php';
+        exit; 
+        }        
+        break;
+
+        // The next cases simply deliver views
         case 'login':
             include '../view/login.php';
             break;

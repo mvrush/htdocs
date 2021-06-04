@@ -40,20 +40,20 @@
             </select> -->
             <?php echo $classList; ?>
         </label>
-        <label class="top">Make<input list="invMake" name="invMake" placeholder="enter Make"></label>
+        <label class="top">Make<input list="invMake" name="invMake" placeholder="enter Make" <?php if(isset($invMake)){echo "value='$invMake'";} ?> required></label>
         <datalist id="invMake">
             <option value="Jeep"></option>
             <option value="Ford"></option>
             <option value="Lamborghini"></option>
             <option value="Monster"></option>
         </datalist>
-        <label class="top">Model<input type="text" name="invModel"></label>
-        <label class="top">Description<textarea name="invDescription" cols="30" rows="5"></textarea></label>
-        <label class="top">Image Path<input type="text" name="invImage" value="/images/no-image.png"></label>
-        <label class="top">Thumbnail Path<input type="text" name="invThumbnail" value="/images/no-image.png"></label>
-        <label class="top">Price<input type="text" name="invPrice"></label>
-        <label class="top"># In Stock<input type="text" name="invStock"></label>
-        <label class="top">Color<input type="text" name="invColor"></label>
+        <label class="top">Model<input type="text" name="invModel" <?php if(isset($invModel)){echo "value='$invModel'";} ?> required></label>
+        <label class="top">Description<textarea name="invDescription" cols="30" rows="5" required><?php if(isset($invDescription)){echo $invDescription;} ?></textarea></label>
+        <label class="top">Image Path<input type="text" name="invImage" value="/images/no-image.png" <?php if(isset($invImage)){echo "value='$invImage'";} ?> required></label>
+        <label class="top">Thumbnail Path<input type="text" name="invThumbnail" value="/images/no-image.png" <?php if(isset($invThumbnail)){echo "value='$invThumbnail'";} ?> required></label>
+        <label class="top">Price<input type="number" name="invPrice" <?php if(isset($invPrice)){echo "value='$invPrice'";} ?> required></label>
+        <label class="top"># In Stock<input type="number" name="invStock" <?php if(isset($invStock)){echo "value='$invStock'";} ?> required></label>
+        <label class="top">Color<input type="text" name="invColor" <?php if(isset($invColor)){echo "value='$invColor'";} ?> required></label>
         <input type="submit" value="Add Vehicle" class="submitBtn">
             <!-- Add the action name-value pair -->
             <input type="hidden" name="action" value="addVehicle">
