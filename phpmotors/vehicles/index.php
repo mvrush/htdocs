@@ -34,7 +34,7 @@ $classificationid = getClassid();
 
 // Build dropdown menu using the $classificationid array
 $classList = '<select name="classificationId" required>';
-$classList .= "<option value='default' disabled selected>Choose Car Classification &#9662;</option>";
+$classList .= "<option value='' disabled selected>Choose Car Classification &#9662;</option>";
 foreach ($classificationid as $class) {
 $classList .= "<option value='$class[classificationId]'>$class[classificationName]</option>";
 }
