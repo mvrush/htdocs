@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+<?php
+// Build the select list
+$classList = '<select name="classificationId" required>';
+$classList .= "<option value='' disabled selected>Choose Car Classification &#9662;</option>";
+foreach ($classificationid as $class) {
+    $classList .= "<option value='$class[classificationId]'";
+    if(isset($classificationId)){
+        if($class['classificationId'] === $classificationId){
+            $classList .= ' selected ';
+        }
+    }
+    $classList .= ">$class[classificationName]</option>";
+}
+$classList .= '</select>';
+
+?><!DOCTYPE html>
 <html lang="en-us">
     <head>
         <meta charset="UTF-8">

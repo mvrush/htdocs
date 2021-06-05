@@ -7,23 +7,28 @@ require_once '../library/connections.php';
 require_once '../model/main-model.php';
 // Get the vehicles model
 require_once '../model/vehicles-model.php';
+// Get the functions library
+require_once '../library/functions.php';
 
-// Get the array of classifications
-$classifications = getClassifications();
+// Get the array of classifications (this has been superceded in the functions library).
+// $classifications = getClassifications();
 // The next two lines are used to test the above code and see if it returns the array. Uncomment to use them.
 //var_dump($classifications); //var_dump is a PHP function that displays info about a variable, array or object.
 //exit; //the exit directive stops all further processing by PHP
 
-// Build a navigation bar using the $classifications array
-$navList = '<ul>';
-$navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
-    $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
-$navList .= '</ul>';
+// Build a navigation bar using the $classifications array (this has been superceded in the functions library).
+// $navList = '<ul>';
+// $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
+// foreach ($classifications as $classification) {
+//     $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+// }
+// $navList .= '</ul>';
 // The next two lines test our unordered list with links. Uncomment to test.
 //echo $navList;
 //exit;
+
+// call navigation function from functions library
+$navList = navigation();
 
 
 // Get the array of classificationName and classificationId
@@ -33,12 +38,12 @@ $classificationid = getClassid();
 //exit; //the exit directive stops all further processing by PHP
 
 // Build dropdown menu using the $classificationid array
-$classList = '<select name="classificationId" required>';
-$classList .= "<option value='' disabled selected>Choose Car Classification &#9662;</option>";
-foreach ($classificationid as $class) {
-$classList .= "<option value='$class[classificationId]'>$class[classificationName]</option>";
-}
-$classList .= '</select>';
+// $classList = '<select name="classificationId" required>';
+// $classList .= "<option value='' disabled selected>Choose Car Classification &#9662;</option>";
+// foreach ($classificationid as $class) {
+// $classList .= "<option value='$class[classificationId]'>$class[classificationName]</option>";
+// }
+// $classList .= '</select>';
 // The next two lines test our select box list. Uncomment to test.
 //echo $classList;
 //exit;
