@@ -29,10 +29,11 @@ main hr {
 }
 
 /*-----------------HEADER----------------*/
-header p {
+ header p {
     float: right;
     margin: 2rem 2rem;
-}
+    text-decoration: underline;
+}  
 
 header img {
     width: 160px;
