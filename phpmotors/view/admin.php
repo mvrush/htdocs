@@ -36,14 +36,14 @@ if(!$_SESSION['loggedin']){
 
         <!-- CONTENT HERE -->
     <div class="contentdiv">
-        <h1><?php echo $clientData['clientFirstname'].' '. $clientData['clientLastname'] ?></h1>
+        <h1><?php echo $_SESSION['clientData']['clientFirstname'].' '. $_SESSION['clientData']['clientLastname'] ?></h1>
         <ul class="adminList">
-            <li>First name: <?php echo $clientData['clientFirstname']?></li>
-            <li>Last name: <?php echo $clientData['clientLastname']?></li>
-            <li>Email: <?php echo $clientData['clientEmail']?></li>
+            <li>First name: <?php echo $_SESSION['clientData']['clientFirstname']?></li>
+            <li>Last name: <?php echo $_SESSION['clientData']['clientLastname']?></li>
+            <li>Email: <?php echo $_SESSION['clientData']['clientEmail']?></li>
         </ul>
     <?php
-        if($clientData['clientLevel'] > 1){
+        if($_SESSION['clientData']['clientLevel'] > 1){
     echo "<p><a href='/phpmotors/vehicles/index.php'><p>Manage Vehicles</p></a>";
     exit; 
     }
