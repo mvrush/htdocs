@@ -29,7 +29,7 @@ main hr {
 }
 
 /*-----------------HEADER----------------*/
-header p{
+header p {
     float: right;
     margin: 2rem 2rem;
 }
@@ -38,6 +38,7 @@ header img {
     width: 160px;
     margin: 0 .3rem;
 }
+
 
 /*-----------------NAVIGATION----------------*/
 nav {
@@ -82,6 +83,14 @@ nav ul li.active a:hover {
 }
 
 /*-----------------PAGE CONTENT----------------*/
+.contentdiv {
+    margin: 0 2%;
+}
+
+.adminList li {
+    margin-bottom: .5rem;
+}
+
 .imageandcall {
     position: relative; /*set to relative. HTML is in the flow of the page. */
 }
@@ -126,9 +135,6 @@ nav ul li.active a:hover {
     transform: translateY(2px);
 }
 
-.contentdiv {
-    margin: 0 2%;
-}
 
 .imageandcall img {
     width: 100%;

@@ -1,5 +1,8 @@
 <?php
-// This is the main controller
+/************* This is the main controller ***********/
+
+// Create or access a Session
+session_start();
 
 // Get the database connection file
 require_once 'library/connections.php';
@@ -14,20 +17,25 @@ require_once 'library/functions.php';
 //var_dump($classifications); //var_dump is a PHP function that displays info about a variable, array or object.
 //exit; //the exit directive stops all further processing by PHP
 
-// Build a navigation bar using the $classifications array (this has been superceded in the functions library).
-// $navList = '<ul>';
-// $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-// foreach ($classifications as $classification) {
-//  $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-// }
-// $navList .= '</ul>';
-// The next two lines test our unordered list with links. Uncomment to test.
+/******* Build a navigation bar using the $classifications array (this has been superceded by the navigation() function in the functions library). ****************
+ *$navList = '<ul>';
+ *$navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
+ *foreach ($classifications as $classification) {
+ * $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+ *}
+ *$navList .= '</ul>';
+ *The next two lines test our unordered list with links. Uncomment to test.
 //echo $navList;
 //exit;
+********************************************************************************/
 
 // call navigation function from the functions library
 $navList = navigation();
 
+// Check if the firstname cookie exists, get its value. Add this to the other controllers to display name after registration
+if(isset($_COOKIE['firstname'])){
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+   }
 
 $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL){

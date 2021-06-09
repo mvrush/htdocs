@@ -1,11 +1,21 @@
-<!DOCTYPE html>
+<?php
+// Check if visitor is NOT logged in
+    // The exclamation mark is a "negation" operator
+    // By adding it the resulting test is reversed
+    // This test is now "If Session loggedin value is NOT true"
+//if the session variable 'loggedin' is false user will be sent back to the main page
+if(!$_SESSION['loggedin']){
+    header('Location: /phpmotors/index.php');
+    exit; 
+    }
+?><!DOCTYPE html>
 <html lang="en-us">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"  content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="description" content="PHP Motors is a demonstration of PHP in action">
         <meta name="author" content="Matt Rushton">
-        <title>Account Login | PHP Motors</title>
+        <title>Client Admin | PHP Motors</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Roboto:wght@300;400;500;700;900&family=Zen+Dots&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/phpmotors/css/normalize.css"> 
@@ -26,22 +36,18 @@
 
         <!-- CONTENT HERE -->
     <div class="contentdiv">
-        <h1>Sign in</h1>
-
-        <?php
-        if (isset($_SESSION['message'])) {
-        echo $_SESSION['message'];
-        }
-        ?>
-        
-        <form action="/phpmotors/accounts/index.php" method="post">
-                <label class="top">Email (required)<input type="email" name="clientEmail" id="clientEmail" <?php if(isset($clientEmail)){echo "value='$clientEmail'";} ?> required></label>
-                <label class="top">Password (required)<input type="password" id="clientPassword" name="clientPassword" pattern="(?=.*\d)(?=.*\W)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></label>
-            <input type="submit" value="Sign-in" class="submitBtn">
-        <!-- Add the action name-value pair. Remeber, the word 'Login' is different from 'login'. The word 'login' is being used to call the View. -->
-        <input type="hidden" name="action" value="Login">
-        </form>
-        <a href="/phpmotors/accounts/index.php?action=registration">Not a member yet? SIGN UP</a>
+        <h1><?php echo $clientData['clientFirstname'].' '. $clientData['clientLastname'] ?></h1>
+        <ul class="adminList">
+            <li>First name: <?php echo $clientData['clientFirstname']?></li>
+            <li>Last name: <?php echo $clientData['clientLastname']?></li>
+            <li>Email: <?php echo $clientData['clientEmail']?></li>
+        </ul>
+    <?php
+        if($clientData['clientLevel'] > 1){
+    echo "<p><a href='/phpmotors/vehicles/index.php'><p>Manage Vehicles</p></a>";
+    exit; 
+    }
+    ?>
 
     </div>
         <!-- FOOTER HERE -->
