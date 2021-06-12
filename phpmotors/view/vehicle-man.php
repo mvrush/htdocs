@@ -36,7 +36,6 @@ if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 3)) {
 
         <!-- CONTENT HERE -->
     <div class="contentdiv">
-    <?php echo $_SESSION['clientData']['clientLevel'] ?>
         <h1>Vehicle Management</h1>
         <?php
         if (isset($message)) {
