@@ -1,6 +1,6 @@
 <?php
 // Check if visitor is NOT logged in
-    // The exclamation mark is a "negation" operator
+    // The exclamation mark (!) is a "negation" operator
     // By adding it the resulting test is reversed
     // This test is now "If Session loggedin value is NOT true"
 //if the session variable 'loggedin' is false user will be sent back to the main page
