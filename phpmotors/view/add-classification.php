@@ -4,7 +4,7 @@
     // By adding it the resulting test is reversed
     // This test is now "If Session loggedin value is NOT true"
 //if the session variable 'loggedin' is false user will be sent back to the main page
-if(!$_SESSION['loggedin']){
+if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 3)){
     header('Location: /phpmotors/index.php');
     exit; 
     }
