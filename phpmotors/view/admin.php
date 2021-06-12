@@ -44,8 +44,7 @@ if(!$_SESSION['loggedin']){
         </ul>
     <?php
         if($_SESSION['clientData']['clientLevel'] > 1){
-    echo "<p><a href='/phpmotors/vehicles/index.php'><p>Manage Vehicles</p></a>";
-    exit; 
+    echo "<a href='/phpmotors/vehicles/index.php'><p>Manage Vehicles</p></a>";
     }
     ?>
 
