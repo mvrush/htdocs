@@ -27,8 +27,8 @@
      return $rowsChanged;
  }
 
- // Get classification list with classificationId
-
+ // Get classification list with classificationId [NOTE! This function is a possible conflict with "function getClassifications()" which is found in the
+ // model - main-model.php controller and called from the vehicles - index.php controller]
  function getClassid() {
     // Create a connection using the phpmotors connection function
     $db = phpmotorsConnect();
@@ -81,5 +81,17 @@
     $stmt->closeCursor();
     // Return the indication of success (rows changed)
     return $rowsChanged;
+   }
+
+   // Get vehicles by classificationId (added in W09)
+function getInventoryByClassification($classificationId){ 
+    $db = phpmotorsConnect(); 
+    $sql = ' SELECT * FROM inventory WHERE classificationId = :classificationId'; 
+    $stmt = $db->prepare($sql); 
+    $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT); 
+    $stmt->execute(); 
+    $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    $stmt->closeCursor(); 
+    return $inventory; 
    }
  

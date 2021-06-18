@@ -1,4 +1,5 @@
 <?php
+
 /**************** This is the vehicles controller **************/
 
 // Create or access a Session
@@ -13,7 +14,7 @@ require_once '../model/vehicles-model.php';
 // Get the functions library
 require_once '../library/functions.php';
 
-/******* Build a navigation bar using the $classifications array (this has been superceded navigation() function in the functions library). ****************
+/******* Build a navigation bar using the $classifications array (this has been superceded by the navigation() function in the functions library). ****************
  *$navList = '<ul>';
  *$navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
  *foreach ($classifications as $classification) {
@@ -23,13 +24,13 @@ require_once '../library/functions.php';
  *The next two lines test our unordered list with links. Uncomment to test.
 //echo $navList;
 //exit;
-********************************************************************************/
+ ********************************************************************************/
 
 // call navigation function from functions library
 $navList = navigation();
 
 
-// Get the array of classificationName and classificationId
+// Get the array of classificationName and classificationId. This function is found in the vehicles-model.php
 $classificationid = getClassid();
 // The next two lines are used to test the above code and see if it returns the array. Uncomment to use them.
 //var_dump($classificationid); //var_dump is a PHP function that displays info about a variable, array or object.
@@ -68,13 +69,13 @@ switch ($action) {
         // Send the data to the model if no errors exist
         $classOutcome = insertClassification($classificationName);
 
-         // Check and report the result
+        // Check and report the result
         if ($classOutcome === 1) {
-        // header reloads the page and flushes the cache so you see the new classification in the nav menu
-        header('Location: /phpmotors/vehicles/index.php');
-        // the following two lines would add a message if you weren't using the above header line
-        // $message = "<p class='success'>You have successfully entered $classificationName into the database.</p>";
-        // include '../view/vehicle-man.php';
+            // header reloads the page and flushes the cache so you see the new classification in the nav menu
+            header('Location: /phpmotors/vehicles/index.php');
+            // the following two lines would add a message if you weren't using the above header line
+            // $message = "<p class='success'>You have successfully entered $classificationName into the database.</p>";
+            // include '../view/vehicle-man.php';
             exit;
         } else {
             $message = "<p class='alert'>Sorry but the $classificationName failed. Please try again.</p>";
@@ -125,6 +126,28 @@ switch ($action) {
         include '../view/add-vehicle.php';
         break;
 
+        /************************************ 
+         * Get vehicles by classificationId 
+         * Used for starting Update & Delete process 
+         *********************************** */
+    case 'getInventoryItems':
+        // Get the classificationId 
+        $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
+        // Fetch the vehicles by classificationId from the DB 
+        $inventoryArray = getInventoryByClassification($classificationId);
+        // Convert the array to a JSON object and send it back 
+        echo json_encode($inventoryArray);
+        break;
+
     default:
-    include '../view/vehicle-man.php';
+        // (W09) Added the following line to get the variable $classifications from the function getClassifications() which is found in the main-model.php .
+        // You could also call the variable $classificationid from the getClassid() function which is found in the vehicles-model.php as they both put
+        //  the classificationId from the SQL database into an array. But if you use getClassid() you may need to change code other places.
+        $classifications = getClassifications();
+        //var_dump($classifications);
+        //exit;
+        $classificationList = buildClassificationList($classifications);
+        include '../view/vehicle-man.php';
+        exit;
+        break;
 }

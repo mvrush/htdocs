@@ -15,7 +15,7 @@ function checkPassword($clientPassword){
 
 // Navigation Function
 function navigation() {
-    // Get the array of classifications
+    // Get the array of classifications from the function getClassifications() found in the main-model.php
     $classifications = getClassifications();
     $navList = '<ul>';
     $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
@@ -25,3 +25,14 @@ function navigation() {
     $navList .= '</ul>';
     return $navList;
 }
+
+// Build the classifications select list 
+function buildClassificationList($classifications){ 
+    $classificationList = '<select name="classificationId" id="classificationList">'; 
+    $classificationList .= "<option>Choose a Classification</option>"; 
+    foreach ($classifications as $classification) { 
+     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>"; 
+    } 
+    $classificationList .= '</select>'; 
+    return $classificationList; 
+   }

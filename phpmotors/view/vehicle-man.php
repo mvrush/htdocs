@@ -4,7 +4,7 @@
     // By adding it the resulting test is reversed
     // This test is now "If Session loggedin value is NOT true"
 //if the session variable 'loggedin' is false user will be sent back to the main page
-if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 3)) {
+if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 2)) {
     header('Location: /phpmotors/index.php');
     exit; 
     }
@@ -37,15 +37,32 @@ if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 3)) {
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1>Vehicle Management</h1>
-        <?php
+    <?php
         if (isset($message)) {
             echo $message;
         }
-        ?>
+    ?>
             <ul>
             <li><a href="/phpmotors/vehicles/index.php?action=add-classification">Add Classification</a></li>
             <li><a href="/phpmotors/vehicles/index.php?action=add-vehicle">Add Vehicle</a></li>
             </ul>
+
+        
+    <?php
+        if (isset($message)) { 
+         echo $message; 
+        } 
+        if (isset($classificationList)) { 
+         echo '<h2>Vehicles By Classification</h2>'; 
+         echo '<p>Choose a classification to see those vehicles</p>'; 
+         echo $classificationList; 
+        }
+    ?>
+    <!-- the following <noscript> tells the browser to detect if JavaScript is disabled. If it is, the message is shown to enable it -->
+        <noscript>
+            <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+        </noscript>
+        <table id="inventoryDisplay"></table>
 
     </div>
         <!-- FOOTER HERE -->
@@ -53,6 +70,7 @@ if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 3)) {
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
         </footer>
     </main>
+    <script src="/phpmotors/js/scripts.js"></script>
     </body>
 
 </html>
