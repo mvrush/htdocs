@@ -94,4 +94,17 @@ function getInventoryByClassification($classificationId){
     $stmt->closeCursor(); 
     return $inventory; 
    }
+
+   // Added the following function in (W09). I am selecting a single vehicle based on its id with the following function
+   // Get vehicle information by invId
+function getInvItemInfo($invId){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+    $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $invInfo;
+   }
  

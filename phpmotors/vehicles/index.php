@@ -139,6 +139,17 @@ switch ($action) {
         echo json_encode($inventoryArray);
         break;
 
+    //added case 'mod' in (W09)
+    case 'mod':
+        $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $invInfo = getInvItemInfo($invId);
+        if(count($invInfo)<1){
+            $message = 'Sorry, no vehicle information could be found.';
+        }
+        include '../view/vehicle-update.php';
+        exit;
+        break;
+
     default:
         // (W09) Added the following line to get the variable $classifications from the function getClassifications() which is found in the main-model.php .
         // You could also call the variable $classificationid from the getClassid() function which is found in the vehicles-model.php as they both put
