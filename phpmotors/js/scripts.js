@@ -35,8 +35,8 @@ function buildInventoryList(data) {
     data.forEach(function (element) { 
      console.log(element.invId + ", " + element.invModel); 
      dataTable += `<tr><td>${element.invMake} ${element.invModel}</td>`; 
-     dataTable += `<td><a href='/phpmotors/vehicles?action=mod&id=${element.invId}' title='Click to modify'>Modify</a></td>`; 
-     dataTable += `<td><a href='/phpmotors/vehicles?action=del&id=${element.invId}' title='Click to delete'>Delete</a></td></tr>`; 
+     dataTable += `<td><a href='/phpmotors/vehicles?action=mod&invId=${element.invId}' title='Click to modify'>Modify</a></td>`; 
+     dataTable += `<td><a href='/phpmotors/vehicles?action=del&invId=${element.invId}' title='Click to delete'>Delete</a></td></tr>`; 
     }) 
     dataTable += '</tbody>'; 
     // Display the contents in the Vehicle Management view 

@@ -139,18 +139,19 @@ switch ($action) {
         echo json_encode($inventoryArray);
         break;
 
-    //added case 'mod' in (W09)
+        //added case 'mod' in (W09)
     case 'mod':
-        $invId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        // in the next line 'invId' references the JavaScript name-value pair inserted from the JavaScript to the Delete link on the Vehicle-Man view
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
-        if(count($invInfo)<1){
+        if (count($invInfo) < 1) {
             $message = 'Sorry, no vehicle information could be found.';
         }
         include '../view/vehicle-update.php';
         exit;
         break;
 
-    // added case 'updateVehicle' in (W09). It's very similar to the 'addVehicle' case above
+        // added case 'updateVehicle' in (W09). It's very similar to the 'addVehicle' case above
     case 'updateVehicle':
         $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
         $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
@@ -179,10 +180,42 @@ switch ($action) {
             $_SESSION['message'] = $message;
             header('location: /phpmotors/vehicles/');
             exit;
-        } 
-        else {
+        } else {
             $message = "<p class='alert'>Sorry, but the $invMake $invModel update failed. Please try again.</p>";
             include '../view/vehicle-update.php';
+            exit;
+        }
+        break;
+
+    case 'del':
+        // in the next line 'invId' references the JavaScript name-value pair inserted from the JavaScript to the Delete link on the Vehicle-Man view
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        $invInfo = getInvItemInfo($invId);
+        if (count($invInfo) < 1) {
+            $message = 'Sorry, no vehicle information could be found.';
+        }
+        include '../view/vehicle-delete.php';
+        exit;
+        break;
+
+    case 'deleteVehicle':
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Send the data to the model
+        $deleteResult = deleteVehicle($invId);
+
+        // Check and report the result NOTE: we no longer write ($deleteResult === 1) like the add Vehicle. Now we simply use ($deleteResult).
+        if ($deleteResult) {
+            $message = "<p class='success'>Congratulations, the $invMake $invModel was succesfully deleted. &#x1F60A;</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p class='alert'>ERROR: $invMake $invModel was not deleted! &#x1F632;</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
             exit;
         }
         break;

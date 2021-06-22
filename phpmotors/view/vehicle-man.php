@@ -40,13 +40,6 @@ if (isset($_SESSION['message'])) {
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1>Vehicle Management</h1>
-    <!-- the following php block is not needed on this page (if you use it you'll get 2 success messages)
-    <?php
-        if (isset($message)) {
-            echo $message;
-        }
-    ?>
-    -->
           <ul>
             <li><a href="/phpmotors/vehicles/index.php?action=add-classification">Add Classification</a></li>
             <li><a href="/phpmotors/vehicles/index.php?action=add-vehicle">Add Vehicle</a></li>
