@@ -8,6 +8,9 @@ if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 2)) {
     header('Location: /phpmotors/index.php');
     exit; 
     }
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    }
 ?><!DOCTYPE html>
 <html lang="en-us">
     <head>
@@ -37,12 +40,14 @@ if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 2)) {
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1>Vehicle Management</h1>
+    <!-- the following php block is not needed on this page (if you use it you'll get 2 success messages)
     <?php
         if (isset($message)) {
             echo $message;
         }
     ?>
-            <ul>
+    -->
+          <ul>
             <li><a href="/phpmotors/vehicles/index.php?action=add-classification">Add Classification</a></li>
             <li><a href="/phpmotors/vehicles/index.php?action=add-vehicle">Add Vehicle</a></li>
             </ul>
@@ -74,3 +79,4 @@ if(!$_SESSION['loggedin'] || ($_SESSION['clientData']['clientLevel'] < 2)) {
     </body>
 
 </html>
+<?php unset($_SESSION['message']); ?>

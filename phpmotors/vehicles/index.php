@@ -150,6 +150,43 @@ switch ($action) {
         exit;
         break;
 
+    // added case 'updateVehicle' in (W09). It's very similar to the 'addVehicle' case above
+    case 'updateVehicle':
+        $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING));
+        $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING));
+        $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING));
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Check for missing data. The || means "or" so if any of the variables are empty the "if" becomes true.
+        if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor)) {
+            $message = '<p class="alert">Please complete all information for the item! Double check the classification of the item./p>';
+            include '../view/vehicle-update.php';
+            exit;
+        }
+
+        // Send the data to the model if no errors exist
+        $updateResult = updateVehicle($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $invId);
+
+        // Check and report the result NOTE: we no longer write ($updateResult === 1) like the add Vehicle. Now we simply use ($updateResult).
+        if ($updateResult) {
+            $message = "<p class='success'>Congratulations, the $invMake $invModel was succesfully updated.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        } 
+        else {
+            $message = "<p class='alert'>Sorry, but the $invMake $invModel update failed. Please try again.</p>";
+            include '../view/vehicle-update.php';
+            exit;
+        }
+        break;
+
     default:
         // (W09) Added the following line to get the variable $classifications from the function getClassifications() which is found in the main-model.php .
         // You could also call the variable $classificationid from the getClassid() function which is found in the vehicles-model.php as they both put
