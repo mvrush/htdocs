@@ -146,6 +146,7 @@ switch ($action){
 
         case 'mod':
             // the clientId is stored in the Session array which is available in the session anywhere on the site. So we just need to include the view.
+            //the view is called when the link is clicked in the admin.php view. 'mod' is found in the link as a name/value pair.
             
             include '../view/client-update.php';
             break;

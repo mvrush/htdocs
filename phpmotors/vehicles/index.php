@@ -140,6 +140,7 @@ switch ($action) {
         break;
 
         //added case 'mod' in (W09)
+        //the view is called when the link is clicked in the vehicle-man.php view. 'mod' is found in the link as a name/value pair. That code is found in the JavaScript and it builds the modify/delete links.
     case 'mod':
         // in the next line 'invId' references the JavaScript name-value pair inserted from the JavaScript to the Delete link on the Vehicle-Man view
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
@@ -187,7 +188,9 @@ switch ($action) {
         }
         break;
 
-    case 'del':
+        // del case added in (W09)
+        //the view is called when the link is clicked in the vehicle-man.php view. 'mod' is found in the link as a name/value pair. That code is found in the JavaScript and it builds the modify/delete links.
+        case 'del':
         // in the next line 'invId' references the JavaScript name-value pair inserted from the JavaScript to the Delete link on the Vehicle-Man view
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
