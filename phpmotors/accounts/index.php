@@ -144,6 +144,112 @@ switch ($action){
         exit;
         break;
 
+        case 'mod':
+            // the clientId is stored in the Session array which is available in the session anywhere on the site. So we just need to include the view.
+            
+            include '../view/client-update.php';
+            break;
+
+        // The following case handles the Account Update process. Added in (W09)
+        case 'updateAccount':
+            // **NOTE** NEXT TWO LINES POSSIBLY UNNECESSARY(or $cliendData might need to be changed to $clientInfo). Query the client data based on the clientId address. Calls getClient() function in the accounts-model.php
+            //$_SESSION['clientData']['clientId'] = $clientId;
+            //$clientData = getClientInfo($clientId);
+            
+            // Filter and store the data.
+            // FILTER_SANITIZE_STRING removes any html elements and leaves only text.
+            // The trim() function removes any white space before or after the value.
+            $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
+            $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING));
+            $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+            $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+            $clientEmail = checkEmail($clientEmail);
+    
+            // Check to see if entered email is different from the Session data email
+            if ($clientEmail != $_SESSION['clientData']['clientEmail']){
+            $existingEmail = checkExistingEmail($clientEmail);
+    
+            // Deal with existing email during registration
+            if($existingEmail){
+             $message = '<p class="notice">That email address already exists. Use a different email address.</p>';
+             include '../view/client-update.php';
+             exit;
+            }
+            }
+    
+            // Check for missing data. The || means "or" so if any of the variables are empty the "if" becomes true.
+            if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)){
+            $message = '<p class="alert">Please provide information for all empty form fields.</p>';
+            include '../view/client-update.php';
+            exit; 
+            }
+    
+    
+            // After hashing the password, send the data to the model if no errors exist
+            $modifyAccountOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
+    
+            // Check and report the result and if successful set a cookie
+            if($modifyAccountOutcome === 1){
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+            // (old line replaced by next line) $message = "<p class='success'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+            $_SESSION['message'] = "<p class='success'>$clientFirstname, your information has been updated.</p>";
+            //Get updated client data from database to prepare to write the new info into the session variabl
+            $clientData = getClientInfo($clientId);
+            // Remove the password from the array using
+            // the array_pop function which removes the last
+            // element from an array
+            array_pop($clientData);
+            // Store the array into the session
+            $_SESSION['clientData'] = $clientData;
+            // Send them to the admin view
+            include '../view/admin.php';
+            exit;
+            } 
+            else {
+            $message = "<p class='alert'>Sorry $clientFirstname, but the update failed.</p>";
+            include '../view/client-update.php';
+            exit;
+            }
+            break;
+
+         // The following case handles the Password Update process
+         case 'updatePassword':
+            // Filter and store the data.
+            // FILTER_SANITIZE_STRING removes any html elements and leaves only text.
+            // The trim() function removes any white space before or after the value.
+            $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+            //I'm pulling the following clientId from the form not the session.
+            $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_STRING));
+            $checkPassword = checkPassword($clientPassword);
+        
+            // Check for missing data. The || means "or" so if any of the variables are empty the "if" becomes true.
+            if(empty($checkPassword)){
+            $messagePassword = '<p class="alert">Please enter a valid password.</p>';
+            include '../view/client-update.php';
+            exit; 
+            }
+    
+            // Hash the checked password
+            $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+    
+            // After hashing the password, send the data to the model if no errors exist
+            $modifyPasswordOutcome = updatePassword($hashedPassword, $clientId);
+    
+            // Check and report the result and if successful set a cookie
+            if($modifyPasswordOutcome === 1){
+            // (old line replaced by next line) $message = "<p class='success'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+            $_SESSION['message'] = "<p class='success'> Your password has been updated.</p>";
+            // (old line replaced by next line) include '../view/login.php';
+            include '../view/admin.php';
+            exit;
+            } 
+            else {
+            $messagePassword = "<p class='alert'>Sorry but the password update failed.</p>";
+            include '../view/client-update.php';
+            exit;
+            }
+            break;
+
 
 
         // The next cases simply deliver views. login has a lower case l and is different from Login above.
@@ -155,6 +261,9 @@ switch ($action){
             break;
         case 'admin':
             include '../view/admin.php';
+            break;
+        case 'modifyaccount':
+            include '../view/client-update.php';
             break;
 
     default:

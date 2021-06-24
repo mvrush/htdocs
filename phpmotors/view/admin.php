@@ -37,13 +37,28 @@ if(!$_SESSION['loggedin']){
         <!-- CONTENT HERE -->
     <div class="contentdiv">
         <h1><?php echo $_SESSION['clientData']['clientFirstname'].' '. $_SESSION['clientData']['clientLastname'] ?></h1>
-        <ul class="adminList">
-            <li>First name: <?php echo $_SESSION['clientData']['clientFirstname']?></li>
-            <li>Last name: <?php echo $_SESSION['clientData']['clientLastname']?></li>
-            <li>Email: <?php echo $_SESSION['clientData']['clientEmail']?></li>
-        </ul>
+        <?php
+        if (isset($message)) {
+            echo $message;
+        }
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+        }
+        ?>
+        <p>You are logged in.</p>
+            <ul class="adminList">
+                <li>First name: <?php echo $_SESSION['clientData']['clientFirstname']?></li>
+                <li>Last name: <?php echo $_SESSION['clientData']['clientLastname']?></li>
+                <li>Email: <?php echo $_SESSION['clientData']['clientEmail']?></li>
+            </ul>
+        <h2>Account Management</h2>
+        <p>Use this link to update account information:</p>
+        <a href="/phpmotors/accounts/index.php?action=mod"><p>Update Account Information</p></a>
+
     <?php
         if($_SESSION['clientData']['clientLevel'] > 1){
+    echo "<h2>Inventory Management</h2>";
+    echo "<p>Use this link to manage the inventory:</p>";
     echo "<a href='/phpmotors/vehicles/index.php'><p>Manage Vehicles</p></a>";
     }
     ?>
@@ -57,3 +72,4 @@ if(!$_SESSION['loggedin']){
     </body>
 
 </html>
+<?php unset($_SESSION['message']); ?>
