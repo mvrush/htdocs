@@ -54,7 +54,7 @@ if ($action == NULL) {
 }
 
 switch ($action) {
-    case 'classification':
+    case 'addClassification':
         // Filter and store the data
         // FILTER_SANITIZE_STRING removes any html elements and leaves only text.
         // The trim() function removes any white space before or after the value.
@@ -221,6 +221,24 @@ switch ($action) {
             header('location: /phpmotors/vehicles/');
             exit;
         }
+        break;
+
+        // (W10) Added the 'classification' case to process the Nav links and make them link to the vehicle classifications.
+    case 'classification':
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
+        // the getVehiclesByClassification() function is in the vehicles-model.php and gets the vehicles for the classifcation sent with the name/value pair from the nav link.
+        $vehicles = getVehiclesByClassification($classificationName);
+        // the if-else control checks to see if any vehicles were returned. If No, which is 'if(!count($vehicles)) -the ! means 'not'-, then display $message with the error.
+        // if Yes then it builds the array from a custom function called buildVehicleDisplay which is found in the functions.php file.
+        if(!count($vehicles)){
+            $message = "<p class='notice'>Sorry, no $classificationName vehicles could be found.</p>";
+          } else {
+            $vehicleDisplay = buildVehiclesDisplay($vehicles);
+          }
+        //the next two lines test to see if the $vehicldDisplay is working. Comment them out for final usage.
+        //echo $vehicleDisplay;
+        //exit;
+        include '../view/classification.php';
         break;
 
     default:

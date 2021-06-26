@@ -164,4 +164,19 @@ function getInvItemInfo($invId){
     // Return the indication of success (rows changed)
     return $rowsChanged;
    }
+
+   // Added getVehiclesByClassification function in (W10). It is a query with a sub-query that uses the
+   // classificationName to get the the information for the classificationId. I says get all the (*) vehicles
+   // from inventory where the classificationId matches the id that is attached to the classificationName in the db. It gets the
+   // classificationName sent to it from the link in the nav that was clicked which was sent through the Vehicles controller.
+   function getVehiclesByClassification($classificationName) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->execute();
+    $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehicles;
+   }
  

@@ -42,6 +42,7 @@ $action = filter_input(INPUT_GET, 'action');
         $action = filter_input(INPUT_POST, 'action');
     }
 
+//some of these cases I don't need. I only put them there to navigate around while I was building stuff.
 switch ($action){
     case 'template':
         include 'view/template.php';
