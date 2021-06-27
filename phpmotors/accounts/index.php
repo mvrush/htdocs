@@ -4,6 +4,7 @@
 // Create or access a Session
 session_start();
 
+// The following 'require_once' lines bring those files into the controllers scope so that it can access them.
 // Get the database connection file. The '../' tells the server to move up a directory level to find the path
 require_once '../library/connections.php';
 // Get the PHP Motors model for use as needed
