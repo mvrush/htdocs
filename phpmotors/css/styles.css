@@ -282,7 +282,7 @@ form label.top textarea:required:valid, input:required:valid, select:required:va
    }
    
    #inv-display li{
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
     padding-bottom: 1rem;
     border: 2px rgb(87, 87, 87) solid;
     border-radius: 5px;
@@ -295,11 +295,15 @@ form label.top textarea:required:valid, input:required:valid, select:required:va
     border: none;
     border-top: 1px solid #000;
     width: 100%;
-}
+    }
    
    #inv-display li img {
        max-width: 100%;
    }
+
+   #inv-display h2 {
+    margin-top: 0;
+    }
 
 /*-------------SINGLE VEHICLE DETAILS DISPLAY--------*/
 .vehicle-detail-contentdiv {
