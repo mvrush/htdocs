@@ -25,7 +25,7 @@
         </nav>
 
         <!-- CONTENT HERE -->
-    <div class="contentdiv">
+    <div class="vehicle-detail-contentdiv">
     <h1><?php {echo "$invInfo[invMake] $invInfo[invModel]";}?></h1>
     <?php
             if (isset($message)) {

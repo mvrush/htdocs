@@ -301,6 +301,48 @@ form label.top textarea:required:valid, input:required:valid, select:required:va
        max-width: 100%;
    }
 
+/*-------------SINGLE VEHICLE DETAILS DISPLAY--------*/
+.vehicle-detail-contentdiv {
+    margin: 0 2%;
+}
+
+.image-price {
+    padding: 0;
+    margin: 0;
+}
+
+.image-price img {
+    width: 100%;
+}
+
+.image-price h2 {
+    font-size: .95rem;
+}
+
+.vehicle-details {
+    padding: 0;
+    margin: 0;
+}
+
+.vehicle-details h3 {
+    font-size: .85rem;
+}
+
+.vehicle-details ul {
+    list-style-type: none;
+    margin-right: 1rem;
+    margin-left: -1rem;
+}
+
+.vehicle-details ul > li:nth-of-type(odd) {
+    background-color: #e9e9f9;
+}
+
+.vehicle-details ul > li {
+    padding: 1rem;
+}
+
+
 /*-----------------FOOTER----------------*/
 footer {
     text-align: center;
@@ -422,6 +464,21 @@ footer p {
 	#inv-display div {
 		width: 100%;
 	}
+
+    /*-------------SINGLE VEHICLE DETAILS DISPLAY--------*/
+    .vehicle-detail-contentdiv {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1rem;
+    }
+
+    .image-price {
+        grid-column-start: 1;
+    }
+    
+    .vehicle-details {
+        grid-column-start: 2;
+    }
     
     
     

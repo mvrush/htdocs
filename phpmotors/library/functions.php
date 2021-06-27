@@ -57,15 +57,15 @@ function buildVehiclesDisplay($vehicles){
 function singleVehicleDisplay($invInfo){
     $dv = "<div class='image-price'>";
     $dv .= "<img src='$invInfo[invImage]' alt='The $invInfo[invMake] $invInfo[invModel]'>";
-    $dv .= "<span><h2>Price: $".number_format("$invInfo[invPrice]");
-    $dv .= "</h2></span>";
+    $dv .= "<h2>Price: $".number_format("$invInfo[invPrice]");
+    $dv .= "</h2>";
     $dv .= '</div>';
     $dv .= "<div class='vehicle-details'>";
     $dv .= "<h3>$invInfo[invMake] $invInfo[invModel] Details</h3>";
     $dv .= '<ul>';
     $dv .= "<li>$invInfo[invDescription]</li>";
-    $dv .= "<li>Color: $invInfo[invColor]</li>";
-    $dv .= "<li># in Stock: $invInfo[invStock]</li>";
+    $dv .= "<li><b>Color:</b> $invInfo[invColor]</li>";
+    $dv .= "<li><b># in Stock:</b> $invInfo[invStock]</li>";
     $dv .= '</ul>';
     $dv .= '</div>';
     return $dv;
