@@ -42,12 +42,31 @@ function buildVehiclesDisplay($vehicles){
     $dv = '<ul id="inv-display">';
     foreach ($vehicles as $vehicle) {
      $dv .= '<li>';
-     $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+     $dv .= "<a href='/phpmotors/vehicles/?action=vehicleDetail&invId=$vehicle[invId]'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
      $dv .= '<hr>';
-     $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
-     $dv .= "<span>$vehicle[invPrice]</span>";
+     $dv .= "<a href='/phpmotors/vehicles/?action=vehicleDetail&invId=$vehicle[invId]'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
+     $dv .= "<span>$".number_format("$vehicle[invPrice]");
+     $dv .= "</span>";
      $dv .= '</li>';
     }
     $dv .= '</ul>';
     return $dv;  
+}
+
+// Build a display of a single vehciles information
+function singleVehicleDisplay($invInfo){
+    $dv = "<div class='image-price'>";
+    $dv .= "<img src='$invInfo[invImage]' alt='The $invInfo[invMake] $invInfo[invModel]'>";
+    $dv .= "<span><h2>Price: $".number_format("$invInfo[invPrice]");
+    $dv .= "</h2></span>";
+    $dv .= '</div>';
+    $dv .= "<div class='vehicle-details'>";
+    $dv .= "<h3>$invInfo[invMake] $invInfo[invModel] Details</h3>";
+    $dv .= '<ul>';
+    $dv .= "<li>$invInfo[invDescription]</li>";
+    $dv .= "<li>Color: $invInfo[invColor]</li>";
+    $dv .= "<li># in Stock: $invInfo[invStock]</li>";
+    $dv .= '</ul>';
+    $dv .= '</div>';
+    return $dv;
 }

@@ -240,6 +240,18 @@ switch ($action) {
         //exit;
         include '../view/classification.php';
         break;
+    
+          // (W10) Added 'vehicleDetail' case to process the links on the classification page and deliver a view.
+    case 'vehicleDetail':
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        $invInfo = getInvItemInfo($invId);
+        if (count($invInfo) < 1) {
+            $message = 'Sorry, no vehicle information could be found.';
+        } else {
+            $vehicleInfo = singleVehicleDisplay($invInfo);
+        }
+        include '../view/vehicle-detail.php';
+        break;
 
     default:
         // (W09) Added the following line to get the variable $classifications from the function getClassifications() which is found in the main-model.php .
