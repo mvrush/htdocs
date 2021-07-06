@@ -31,7 +31,7 @@ if ($action == NULL) {
 * Variables for use with the Image Upload Functionality !!NOTE!!: YOU WILL HAVE TO CHANGE THIS DURING ENHANCEMENT 9
 * **************************************************** */
 // directory name where uploaded images are stored. These variables are used in the 'delete' switch below.
-$image_dir = '/phpmotors/uploads/images';
+$image_dir = '/phpmotors/images/vehicles';
 // The path is the full path from the server root
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;
 

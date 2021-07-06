@@ -86,7 +86,7 @@ nav ul li {
 
 nav ul li a {
     display: block;
-    color: white;
+    color: #e1f1ff;
     padding: .8rem .4rem;
     text-decoration: none;
     text-align: center;
@@ -94,7 +94,7 @@ nav ul li a {
 }
 
 nav ul li a:visited {
-    color: white;
+    color: #e1f1ff;
 }
 
 nav ul li a:hover {
@@ -163,6 +163,10 @@ nav ul li.active a:hover {
 .imageandcall button:active {
     box-shadow: 0 3px 0 #bababa;
     transform: translateY(2px);
+}
+
+button:hover {
+    box-shadow: 0 5px 8px 3px rgba(0,0,0,0.3);
 }
 
 
@@ -285,6 +289,10 @@ form label.top textarea:required:valid, input:required:valid, select:required:va
 .submitBtn:active {
     box-shadow: 0 3px 0 #bababa;
     transform: translateY(2px);
+}
+
+.submitBtn:hover {
+    box-shadow: 0 5px 8px 3px rgba(0,0,0,0.3);
 }
 
 .alert {
