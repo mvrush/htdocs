@@ -85,8 +85,10 @@
 
    // Get vehicles by classificationId (added in W09)
 function getInventoryByClassification($classificationId){ 
-    $db = phpmotorsConnect(); 
-    $sql = ' SELECT * FROM inventory WHERE classificationId = :classificationId'; 
+    $db = phpmotorsConnect();
+    // remove original SQL statement in (W11) and replace it with the one immediately following the old one
+    //$sql = ' SELECT * FROM inventory WHERE classificationId = :classificationId';
+    $sql = ' SELECT invId, invMake, invModel, invDescription, invPrice, invStock, invColor, classificationId FROM inventory WHERE classificationId = :classificationId';
     $stmt = $db->prepare($sql); 
     $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT); 
     $stmt->execute(); 
@@ -171,7 +173,9 @@ function getInvItemInfo($invId){
    // classificationName sent to it from the link in the nav that was clicked which was sent through the Vehicles controller.
    function getVehiclesByClassification($classificationName) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    //replaced the next line with the line after it in (W11) to pull images from the image table instead of inventory table.
+    //$sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $sql = "SELECT inventory.invId, inventory.invMake, inventory.invModel, inventory.invPrice, inventory.classificationId, images.invId, images.imgPath, images.imgName, images.imgPrimary FROM inventory INNER JOIN images ON inventory.invId = images.invId WHERE inventory.classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName) AND images.imgName LIKE '%tn.jpg' AND images.imgPrimary = 1";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     $stmt->execute();
@@ -190,4 +194,18 @@ function getInvItemInfo($invId){
 	$stmt->closeCursor();
 	return $invInfo;
 }
+
+   // Added the following function in (W10) and also used in (W11) for the single vehicle display.
+   // I am selecting a single vehicle based on its id with the following function and sending it to functions which creates the HTML for the vehicle-detail view.
+   // Get vehicle information by invId
+   function getVehicleDetail($invId){
+    $db = phpmotorsConnect();
+    $sql = "SELECT inventory.invId, inventory.invMake, inventory.invModel, inventory.invPrice, inventory.invDescription, inventory.invColor, inventory.invStock, images.invId, images.imgPath, images.imgName, images.imgPrimary FROM inventory INNER JOIN images ON inventory.invId = images.invId WHERE inventory.invId = :invId AND images.imgName NOT LIKE '%tn.jpg' AND images.imgPrimary = 1";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+    $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $invInfo;
+   }
  

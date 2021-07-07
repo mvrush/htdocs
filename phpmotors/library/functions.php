@@ -42,7 +42,7 @@ function buildVehiclesDisplay($vehicles){
     $dv = '<ul id="inv-display">';
     foreach ($vehicles as $vehicle) {
      $dv .= '<li>';
-     $dv .= "<a href='/phpmotors/vehicles/?action=vehicleDetail&invId=$vehicle[invId]'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
+     $dv .= "<a href='/phpmotors/vehicles/?action=vehicleDetail&invId=$vehicle[invId]'><img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
      $dv .= '<hr>';
      $dv .= "<a href='/phpmotors/vehicles/?action=vehicleDetail&invId=$vehicle[invId]'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
      $dv .= "<span>$".number_format("$vehicle[invPrice]");
@@ -56,7 +56,7 @@ function buildVehiclesDisplay($vehicles){
 // Build a display of a single vehciles information
 function singleVehicleDisplay($invInfo){
     $dv = "<div class='image-price'>";
-    $dv .= "<img src='$invInfo[invImage]' alt='The $invInfo[invMake] $invInfo[invModel]'>";
+    $dv .= "<img src='$invInfo[imgPath]' alt='The $invInfo[invMake] $invInfo[invModel]'>";
     $dv .= "<h2>Price: $".number_format("$invInfo[invPrice]");
     $dv .= "</h2>";
     $dv .= '</div>';
