@@ -35,6 +35,9 @@
             <?php if(isset($vehicleInfo)){
         echo $vehicleInfo; }
         ?>
+                    <?php if(isset($thumb)){
+        echo $thumb; }
+        ?>
 
 
 

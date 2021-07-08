@@ -11,11 +11,25 @@ body {
     background: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
     font-family: 'Zen Dots', cursive;
     font-size: 1rem;
 }
 
+h2 {
+    font-family: 'Zen Dots', cursive;
+    font-size: .9rem;
+}
+
+h3 {
+    font-family: 'Zen Dots', cursive;
+    font-size: .8rem;
+}
+
+h4, h5, h6 {
+    font-family: 'Zen Dots', cursive;
+    font-size: .7rem;
+}
 
 a {
     text-decoration: none;
@@ -383,6 +397,39 @@ form label.top textarea:required:valid, input:required:valid, select:required:va
     padding: 1rem;
 }
 
+.thumb-h4 {
+    font-size: .9rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.thumbnail-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.thumbnail-view img {
+    width: 40%;
+    max-width: 150px;
+    margin-bottom: 1rem;
+    border: 1px solid black;
+}
+
+
+
+/*-----------------IMAGE MANAGEMENT ADMIN----------------*/
+.image-management label {
+    display: block;
+}
+
+.image-management fieldset {
+    margin: 1rem 0 1rem 0;
+}
+
+.image-management input {
+    margin: .5rem 0 1rem 0;
+}
 
 /*-----------------FOOTER----------------*/
 footer {
@@ -409,9 +456,24 @@ footer p {
             background: url('/phpmotors/images/site/small_check.jpg');
         }
     
-        h1, h2, h3, h4, h5, h6 {
+        h1 {
+            font-family: 'Zen Dots', cursive;
+            font-size: 1.3rem;
+        }
+        
+        h2 {
             font-family: 'Zen Dots', cursive;
             font-size: 1.2rem;
+        }
+        
+        h3 {
+            font-family: 'Zen Dots', cursive;
+            font-size: 1.1rem;
+        }
+        
+        h4, h5, h6 {
+            font-family: 'Zen Dots', cursive;
+            font-size: 1rem;
         }
     
         /*-----------------MAIN----------------*/
@@ -509,16 +571,46 @@ footer p {
     /*-------------SINGLE VEHICLE DETAILS DISPLAY--------*/
     .vehicle-detail-contentdiv {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 2fr 2fr;
         column-gap: 1rem;
     }
 
-    .image-price {
+    .vehicle-detail-contentdiv h1 {
+        grid-column: 1/3;
+        grid-row-start: 1;
+    }
+
+    .thumb-h4 {
+        display: none;
+    }
+
+    .thumbnail-view {
         grid-column-start: 1;
+        grid-row-start: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .thumbnail-view img {
+        width: 70%;
+        max-width: 150px;        
+        border: 1px solid black;
+    }
+
+    .thumbnail-view img:hover {
+        transform: scale(2.3);
+    }
+    
+    .image-price {
+        grid-column-start: 2;
+        grid-row-start: 2;
     }
     
     .vehicle-details {
-        grid-column-start: 2;
+        grid-column-start: 3;
+        grid-row-start: 2;
     }
     
     

@@ -14,6 +14,8 @@ require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 // Get the functions library
 require_once '../library/functions.php';
+// Get the uploads model
+require_once '../model/uploads-model.php';
 
 /******* Build a navigation bar using the $classifications array (this has been superceded by the navigation() function in the functions library). ****************
  *$navList = '<ul>';
@@ -243,15 +245,23 @@ switch ($action) {
         break;
     
           // (W10) Added 'vehicleDetail' case to process the links on the classification page and deliver a view.
+          // (W11) Added the thumbnail parts to the vehicleDetail case.
     case 'vehicleDetail':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getVehicleDetail($invId);
+        // next line recieves the $thumbs variable from the uploads-model getVehiclesDetail() function. It's stored as $invId and
+        // then turned into the $thumbs variable here in the line below. So I named both variables $thumbs but I didn't have to do that in the uploads-model. There I could have called it anything.
+        $thumbs = getThumbnailImages($invId);
         if (count($invInfo) < 1) {
             $message = 'Sorry, no vehicle information could be found.';
         } else {
             $vehicleInfo = singleVehicleDisplay($invInfo);
         }
+        $thumb = singleVehicleThumbnail($thumbs);
         include '../view/vehicle-detail.php';
+        //check the array with var_dump to test
+        //var_dump($thumbs);
+        //exit;
         break;
 
     default:

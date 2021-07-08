@@ -34,6 +34,7 @@ if (isset($_SESSION['message'])) {
 
         <!-- CONTENT HERE -->
         <div class="contentdiv">
+            <div class="image-management">
             <h1>Image Management</h1>
             <p>Choose one of the options below:</p>
             <h2>Add New Vehicle Image</h2>
@@ -71,7 +72,8 @@ if (isset($_SESSION['message'])) {
             if (isset($imageDisplay)) {
                 echo $imageDisplay;
             } ?>
-
+            
+            </div>
         </div>
         <!-- FOOTER HERE -->
         <footer>

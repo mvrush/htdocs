@@ -69,3 +69,16 @@ function checkExistingImage($imgName)
     $stmt->closeCursor();
     return $imageMatch;
 }
+
+// Get all thumbnail images based on invId. Added in (W11)
+// returns $thumbs as the new $invId which gets turned into another variable named $thumbs in the Vehicles controller.
+function getThumbnailImages($invId){
+    $db = phpmotorsConnect();
+    $sql = "SELECT imgPath, imgName FROM images WHERE invId = :invId AND imgPath LIKE '%tn.jpg'";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+    $thumbs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $thumbs;
+   }

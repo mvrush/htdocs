@@ -53,7 +53,7 @@ function buildVehiclesDisplay($vehicles){
     return $dv;  
 }
 
-// Build a display of a single vehciles information
+// Build a display of a single vehicles information
 function singleVehicleDisplay($invInfo){
     $dv = "<div class='image-price'>";
     $dv .= "<img src='$invInfo[imgPath]' alt='The $invInfo[invMake] $invInfo[invModel]'>";
@@ -68,6 +68,17 @@ function singleVehicleDisplay($invInfo){
     $dv .= "<li><b># in Stock:</b> $invInfo[invStock]</li>";
     $dv .= '</ul>';
     $dv .= '</div>';
+    return $dv;
+}
+
+// Build thumbnail display to display on single vehicle info view
+function singleVehicleThumbnail($thumbs){
+    $dv = "<h4 class='thumb-h4'>Vehicle Thumbnails</h4>";
+    $dv .= "<div class='thumbnail-view'>";
+    foreach ($thumbs as $thumb) {
+        $dv .= "<img src='$thumb[imgPath]' alt='Thumbnail image titled $thumb[imgName] on phpmotors.com'>";
+    }
+    $dv .= "</div>";
     return $dv;
 }
 
@@ -190,7 +201,7 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
     break;
     default:
      return;
-   } // ends the swith
+   } // ends the switch
    
     // Get the old image and its height and width
     $old_image = $image_from_file($old_image_path);
