@@ -368,6 +368,7 @@ form label.top textarea:required:valid, input:required:valid, select:required:va
 
 .image-price img {
     width: 100%;
+    max-width: 500px;
 }
 
 .image-price h2 {
