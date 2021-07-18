@@ -52,7 +52,6 @@
  function insertVehicle($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor){
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
-    // The SQL statement
     $sql = 'INSERT INTO inventory (classificationId, invMake, invModel, invDescription, invImage, invThumbnail, invPrice, invStock, invColor)
         VALUES (:classificationId, :invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor)';
     // Create the prepared statement using the phpmotors connection
@@ -175,10 +174,11 @@ function getInvItemInfo($invId){
     $db = phpmotorsConnect();
     //replaced the next line with the line after it in (W11) to pull images from the image table instead of inventory table.
     //$sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
-    $sql = "SELECT inventory.invId, inventory.invMake, inventory.invModel, inventory.invPrice, inventory.classificationId, images.invId, images.imgPath, images.imgName, images.imgPrimary FROM inventory INNER JOIN images ON inventory.invId = images.invId WHERE inventory.classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName) AND images.imgName LIKE '%tn.jpg' AND images.imgPrimary = 1";
+    $sql = "SELECT inventory.invId, inventory.invMake, inventory.invModel, inventory.invPrice, inventory.classificationId, images.invId, images.imgPath, images.imgName, images.imgPrimary FROM inventory INNER JOIN images ON inventory.invId = images.invId WHERE inventory.classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName) AND images.imgName LIKE '%tn.%' AND images.imgPrimary = 1";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     $stmt->execute();
+    //can't just use fetch() on the next line. You have to use fechAll().
     $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $vehicles;
@@ -190,6 +190,7 @@ function getInvItemInfo($invId){
 	$sql = 'SELECT invId, invMake, invModel FROM inventory';
 	$stmt = $db->prepare($sql);
 	$stmt->execute();
+    //can't just use fetch() on the next line. You have to use fechAll().
 	$invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	$stmt->closeCursor();
 	return $invInfo;

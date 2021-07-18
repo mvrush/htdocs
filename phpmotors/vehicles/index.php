@@ -16,6 +16,8 @@ require_once '../model/vehicles-model.php';
 require_once '../library/functions.php';
 // Get the uploads model
 require_once '../model/uploads-model.php';
+// Get the reviews model
+require_once '../model/reviews-model.php';
 
 /******* Build a navigation bar using the $classifications array (this has been superceded by the navigation() function in the functions library). ****************
  *$navList = '<ul>';

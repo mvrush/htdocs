@@ -55,13 +55,22 @@ if(!$_SESSION['loggedin']){
         <p>Use this link to update account information:</p>
         <a href="/phpmotors/accounts/index.php?action=mod"><p>Update Account Information</p></a>
 
-    <?php
+<?php
         if($_SESSION['clientData']['clientLevel'] > 1){
     echo "<h2>Inventory Management</h2>";
     echo "<p>Use this link to manage the inventory:</p>";
     echo "<a href='/phpmotors/vehicles/index.php'><p>Manage Vehicles</p></a>";
     }
-    ?>
+
+    $clientReviews = getReviewsByClientId($_SESSION['clientData']['clientId']);
+    if($clientReviews) {
+        echo "<h2>Manage Your Product Reviews</h2>";
+        $reviews = buildClientReviewsList($clientReviews);
+        echo $reviews;
+    }
+?>
+
+        
 
     </div>
         <!-- FOOTER HERE -->

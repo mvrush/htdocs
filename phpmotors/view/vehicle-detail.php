@@ -26,8 +26,8 @@
 
         <!-- CONTENT HERE -->
     <div class="vehicle-detail-contentdiv">
-    <h1><?php {echo "$invInfo[invMake] $invInfo[invModel]";}?></h1>
-    <?php
+        <h1><?php {echo "$invInfo[invMake] $invInfo[invModel]";}?></h1>
+        <?php
             if (isset($message)) {
              echo $message;
             }
@@ -37,11 +37,55 @@
         ?>
                     <?php if(isset($thumb)){
         echo $thumb; }
-        ?>
-
-
-
+        ?>        
     </div>
+    <hr>
+    <section class="vehicle-detail-reviews">
+        <h2>Customer Reviews</h2>
+        <?php 
+            if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                $screenName = userName($_SESSION['clientData']['clientFirstname'], $_SESSION['clientData']['clientLastname']);
+            
+        ?>
+        <h3>Review the <?php {echo "$invInfo[invMake] $invInfo[invModel]";}?></h3>
+        <?php if (isset($_SESSION['reviewMessage'])) {
+                echo $_SESSION['reviewMessage'];
+            }
+        ?>
+        <form class="review-form" action="/phpmotors/reviews/index.php" method="post">
+            <div>
+                <label for="screenName">Screen Name: </label><br>
+                <input type="text" <?php echo "value='$screenName'" ?> id="screenName" name="screenName" readonly>
+            </div>
+            <div>
+                <label for="reviewText">Review Text </label><br>
+                <textarea cols=35 rows=5 name="reviewText" required></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Submit Review" class="submitBtn">
+            </div>
+            <!-- Add the action name-value pair -->
+            <input type="hidden" name="action" value="addReview">
+            <input type="hidden" name="invId" value="<?php echo $invId ?>">
+            <input type="hidden" name="clientId" value="<?php echo $_SESSION['clientData']['clientId'] ?>">
+        
+        </form>
+        <?php
+            } else {
+                echo "<p>You must <a href='/phpmotors/accounts/?action=login'>login</a> to write a review.</p>";
+            }
+            $invReviews = getReviewsByInvId($invId);
+                if($invReviews) {
+                    $reviews = buildInventoryReviewsList($invReviews);
+                    echo $reviews;
+                } else {
+                    echo "<p class='addReview-italics'>Be the first to write a review.</p>";
+                }
+            ?>
+
+    </section>
+    
+
         <!-- FOOTER HERE -->
         <footer>
         <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
@@ -50,3 +94,4 @@
     </body>
 
 </html>
+<?php unset($_SESSION['reviewMessage']); ?>

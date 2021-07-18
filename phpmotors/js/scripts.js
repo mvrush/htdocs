@@ -44,6 +44,7 @@ function buildInventoryList(data) {
    }
 
 
+
 // code to show password
 function showPass() {
     var x = document.getElementById("clientPassword");

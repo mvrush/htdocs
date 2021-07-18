@@ -253,6 +253,7 @@ form label.top, form div {
     display: block;
     padding-bottom: .5rem;
     font-family: 'Zen Dots', cursive;
+    font-size: 0.8rem;
 }
 
 form label.top input, form label.top select, form label.top textarea {
@@ -418,6 +419,61 @@ form label.top textarea:required:valid, input:required:valid, select:required:va
 }
 
 
+/*----------------VEHICLE DISPLAY REVIEW SECTION--------------*/
+.vehicle-detail-reviews {
+    margin: 0 2%;
+}
+
+.review-form {
+    border: 2px solid #3a3a3a;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.addReview-italics {
+    font-family: 'Zen Dots', cursive;
+    font-style: italic;
+}
+
+.review-list {
+    padding: .5rem;
+}
+
+.single-review {
+    padding: 0 1rem 1rem 1rem;
+    margin: 1rem 0;
+    border: 2px rgb(87, 87, 87) solid;
+    border-radius: 5px;
+    box-shadow: 0 0 8px 3px rgba(0,0,0,0.3);
+    background-color: rgb(254, 255, 167);
+}
+
+.single-review p {
+    padding: 1rem 1rem 2rem 1rem;
+    background-color: white;
+}
+
+.single-review a {
+    margin: 0 0.3rem;
+}
+
+/*----------------ADMIN REVIEW LIST/DELETE REVIEW VIEW--------------*/
+
+.admin-review-list, .delete-review-text {
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 2px rgb(87, 87, 87) solid;
+    border-radius: 5px;
+    box-shadow: 0 0 8px 3px rgba(0,0,0,0.3);
+    background-color: rgb(254, 255, 167);
+}
+
+.admin-review-list td {
+    padding: 0.5rem;
+    background-color: white;
+}
+
+
 
 /*-----------------IMAGE MANAGEMENT ADMIN----------------*/
 .image-management label {
@@ -536,6 +592,11 @@ footer p {
     .reviewupgradediv article {
         grid-column: 2;
         grid-row: 1;
+    }
+
+    /*-----------------FORM----------------*/
+    form label.top, form div {
+        font-size: 1rem;
     }
     
     
