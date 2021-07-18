@@ -293,7 +293,7 @@ function buildInventoryReviewsList($invReviews) {
             if(isset($_SESSION['clientData']) && $_SESSION['clientData']['clientId'] === $review['clientId']) {
                 $reviews .= "<span class='review-buttons'>";
                 $reviews .= "<a class='modify' href='/phpmotors/reviews?action=modReview&reviewId=$review[reviewId]' title='Click to edit'>Edit </a>";
-                $reviews .= "<a class='delete' href='/phpmotors/reviews?action=delete-review&reviewId=$review[reviewId]' title='Click to delete'>Delete</a>";
+                $reviews .= "<a class='delete' href='/phpmotors/reviews?action=deleteReview&reviewId=$review[reviewId]' title='Click to delete'>Delete</a>";
                 $reviews .= "</span>";
             }
             $reviews .= '</div>';
@@ -310,8 +310,8 @@ function buildClientReviewsList($clientReviews) {
         $reviews .= '<tr>';
         $reviewDate =  formatReviewDate($review['reviewDate']);         
         $reviews .= "<td><a href='/phpmotors/vehicles/?action=vehicleDetail&invId=$review[invId]'><span class='label'>$review[invMake] $review[invModel]</span></a> (Reviewed on $reviewDate)</td>"; 
-        $reviews .= "<td><a class='grow modify' href='/phpmotors/reviews?action=modReview&reviewId=$review[reviewId]' title='Click to edit'>Edit</a></td>"; 
-        $reviews .= "<td><a class='grow delete' href='/phpmotors/reviews?action=deleteReview&reviewId=$review[reviewId]' title='Click to delete'>Delete</a></td>";
+        $reviews .= "<td><a href='/phpmotors/reviews?action=modReview&reviewId=$review[reviewId]' title='Click to edit'>Edit</a></td>"; 
+        $reviews .= "<td><a href='/phpmotors/reviews?action=deleteReview&reviewId=$review[reviewId]' title='Click to delete'>Delete</a></td>";
         $reviews .= "</tr>";
        }
     $reviews .= "</table>";

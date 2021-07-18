@@ -58,7 +58,7 @@
                 <input type="text" <?php echo "value='$screenName'" ?> id="screenName" name="screenName" readonly>
             </div>
             <div>
-                <label for="reviewText">Review Text </label><br>
+                <label>Review Text </label><br>
                 <textarea cols=35 rows=5 name="reviewText" required></textarea>
             </div>
             <div>
